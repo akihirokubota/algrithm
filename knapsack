@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+#include <stdio.h>
+
+int ps[5] = {2,3,2,3,6};
+int w_s[5] = {3,4,1,2,3};
+
+int maxw = 10;
+
+int ret = 0;
+
+void knapsack(int n, int w, int p){
+    if (w > maxw) return;
+    ret = max(ret, p);
+    if (n >= 5) return;
+    knapsack(n + 1, w, p);
+    knapsack(n + 1, w + w_s[n], p + ps[n]);
+}
+
+int main(void){
+    knapsack(0, 0, 0);
+    printf("%d\n",ret);
+}
